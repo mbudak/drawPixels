@@ -1,12 +1,15 @@
-// elements
+// buttons
 var btn_AddRow = document.getElementById('add-row');
+var btn_FillAll = document.getElementById('fillAll');
+// other elements
 var pixelTable = document.getElementById('pixelTable');
 var currentColor = document.getElementById('currentColor');
 var drawByMouseOn = document.getElementById('drawByMouseOn');
 
+
 // Events 
 btn_AddRow.addEventListener('click', makeRow);
-
+btn_FillAll.addEventListener('click', fillAll);
 function colorize() {
     this.setAttribute('class', currentColor.value);    
 }
@@ -14,10 +17,18 @@ function colorize() {
 function colorizeByMouse() {
     if (drawByMouseOn.checked) {
         this.setAttribute('class', currentColor.value);   
-    }
-    
+    }    
 }
 
+function fillAll() {
+    var tdList = document.querySelectorAll("#pixelTable td");
+    tdList.forEach(element => {
+        element.setAttribute('class', currentColor.value);
+    });
+
+}
+
+/* Table Functions */
 function makeRow(colCount) {
     let row = pixelTable.insertRow(0);
     for (let i = 0; i < colCount; i++) {
@@ -33,7 +44,7 @@ function AddTable(row, col) {
         makeRow(20);
     }
 }
-
+/* End of Table Functions */
 
 // Ready to Run
 if (true) {
