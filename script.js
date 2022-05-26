@@ -2,6 +2,7 @@
 var btn_AddRow = document.getElementById('add-row');
 var btn_FillAll = document.getElementById('fillAll');
 var btn_FillWhites = document.getElementById('fillWhites');
+var btn_clearAll = document.getElementById('clearAll');
 
 // other elements
 var pixelTable = document.getElementById('pixelTable');
@@ -13,6 +14,7 @@ var drawByMouseOn = document.getElementById('drawByMouseOn');
 btn_AddRow.addEventListener('click', makeRow(20));
 btn_FillAll.addEventListener('click', fillAll);
 btn_FillWhites.addEventListener('click', fillWhites);
+btn_clearAll.addEventListener('click', clearAll);
 
 
 // Event Functions
@@ -42,6 +44,12 @@ function fillWhites() {
     });
 }
 
+function clearAll() {
+    var tdList = document.querySelectorAll("#pixelTable td");
+    tdList.forEach(element => {
+        element.setAttribute('class', 'white');
+    });
+}
 
 
 /* Table Functions */
