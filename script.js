@@ -1,9 +1,9 @@
 // defaults
 var rows = 20;
 var cols = 20;
+colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black', 'white', 'brown'];
 
 // buttons
-
 var btn_FillAll = document.getElementById('fillAll');
 var btn_FillWhites = document.getElementById('fillWhites');
 var btn_clearAll = document.getElementById('clearAll');
@@ -14,7 +14,7 @@ var currentColor = document.getElementById('currentColor');
 var drawByMouseOn = document.getElementById('drawByMouseOn');
 var numberOfRows = document.getElementById('rows');
 var numberOfColumns = document.getElementById('cols');
-
+var partyMode = document.getElementById('partyMode');
 
 // Add Events to Elements
 
@@ -23,6 +23,7 @@ btn_FillWhites.addEventListener('click', fillWhites);
 btn_clearAll.addEventListener('click', clearAll);
 numberOfRows.addEventListener('change', changeRows);
 numberOfColumns.addEventListener('change', changeColumns);
+partyMode.addEventListener('change', checkPartyMode);
 
 
 // Event Functions
@@ -109,6 +110,37 @@ function AddTable(row, col) {
     }
 }
 /* End of Table Functions */
+
+
+function doParty() {
+    timex = setTimeout(function(){
+        let x = Math.floor(Math.random() * cols);
+        let y = Math.floor(Math.random() * rows);
+        let pixelColor = colors[Math.floor(Math.random() * colors.length)];
+
+        try{
+            pixelTable.rows[x].cells[y].setAttribute('class', pixelColor);
+        } catch(err) {
+
+            console.log('Error: ', err.message, x, y, pixelColor);
+        }
+
+        doParty();
+    }, 100);
+}
+
+function checkPartyMode(){
+    if (partyMode.checked) {
+        doParty();
+    } else {
+        console.log('party finished')
+        clearTimeout(timex);
+    }
+
+    /*
+    
+    */
+  }
 
 
 
