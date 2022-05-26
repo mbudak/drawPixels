@@ -19,7 +19,8 @@ td {
 }
 
 
-select, button {
+select,
+button {
   height: 24px;
 }
 
@@ -33,30 +34,39 @@ table td {
 .red {
   background-color: #e63946;
 }
+
 .orange {
   background-color: #f4a261;
 }
+
 .yellow {
   background-color: #e9c46a;
 }
+
 .green {
   background-color: #a3b18a;
 }
+
 .blue {
   background-color: #0096c7;
 }
+
 .indigo {
   background-color: #b4c1e4;
 }
+
 .violet {
   background-color: #a663cc;
 }
+
 .black {
   background-color: #0b0911;
 }
+
 .white {
   background-color: #eef9fb;
 }
+
 .brown {
   background-color: #deab90;
 }

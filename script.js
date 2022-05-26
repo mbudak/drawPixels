@@ -3,7 +3,7 @@ var rows = 20;
 var cols = 20;
 
 // buttons
-var btn_AddRow = document.getElementById('add-row');
+
 var btn_FillAll = document.getElementById('fillAll');
 var btn_FillWhites = document.getElementById('fillWhites');
 var btn_clearAll = document.getElementById('clearAll');
@@ -17,7 +17,7 @@ var numberOfColumns = document.getElementById('cols');
 
 
 // Add Events to Elements
-btn_AddRow.addEventListener('click', makeRow(20));
+
 btn_FillAll.addEventListener('click', fillAll);
 btn_FillWhites.addEventListener('click', fillWhites);
 btn_clearAll.addEventListener('click', clearAll);
@@ -27,13 +27,13 @@ numberOfColumns.addEventListener('change', changeColumns);
 
 // Event Functions
 function colorize() {
-    this.setAttribute('class', currentColor.value);    
+    this.setAttribute('class', currentColor.value);
 }
 
 function colorizeByMouse() {
     if (drawByMouseOn.checked) {
-        this.setAttribute('class', currentColor.value);   
-    }    
+        this.setAttribute('class', currentColor.value);
+    }
 }
 
 function fillAll() {
@@ -60,16 +60,33 @@ function clearAll() {
 }
 
 function changeRows() {
+    // decrease
     if (numberOfRows.value < rows) {
+        document.getElementById('pixelTable').deleteRow(rows);
         rows--;
-        document.getElementById("pixelTable").deleteRow(rows-1);
-    } else {
+    } else { // or increase
         rows++;
         makeRow(cols);
     }
 }
+
+// Add or Remove columns are little bit tricky
+// we need to scan all rows and add or remove cells
 function changeColumns() {
-    console.log('columns', numberOfColumns.value);
+    if (numberOfColumns.value < cols) {
+        var rowList = document.getElementById('pixelTable').rows;
+        for (var i = 0; i < rowList.length; i++) {
+            rowList[i].deleteCell(-1);
+        }
+        cols--; //change default cols
+    } else {
+        var rowList = document.getElementById('pixelTable').rows;
+        for (var i = 0; i < rowList.length; i++) {
+            rowList[i].insertCell(0);
+        }
+        cols++; //change default cols
+    }
+
 }
 
 /* Table Functions */
@@ -80,7 +97,7 @@ function makeRow(colCount) {
         let cell = row.insertCell(0);
         cell.setAttribute('class', "white"); // Default class
         cell.addEventListener('click', colorize);
-        cell.addEventListener('mouseover', colorizeByMouse);       
+        cell.addEventListener('mouseover', colorizeByMouse);
     }
 }
 
@@ -92,6 +109,8 @@ function AddTable(row, col) {
     }
 }
 /* End of Table Functions */
+
+
 
 // Ready to Run
 if (true) {
