@@ -105,25 +105,37 @@ function makeRow(colCount) {
 // add a matrix
 function AddTable(row, col) {
     // we dont want zero based index
-    for (let i = 1; i < row; i++) {
+    for (let i = 1; i <= row; i++) {
         makeRow(col);
     }
 }
 /* End of Table Functions */
 
 
+function generateRandom(min, max) {
+    // find diff
+    let difference = max - min;
+
+    // generate random number 
+    let rand = Math.random();
+
+    // multiply with difference 
+    rand = Math.floor( rand * difference);
+
+    // add with min value 
+    rand = rand + min;
+
+    return rand;
+}
+
+
 function doParty() {
     timex = setTimeout(function(){
-        let x = Math.floor(Math.random() * cols);
-        let y = Math.floor(Math.random() * rows);
+        let x = generateRandom(0, cols);
+        let y = generateRandom(0, rows);
         let pixelColor = colors[Math.floor(Math.random() * colors.length)];
 
-        try{
-            pixelTable.rows[x].cells[y].setAttribute('class', pixelColor);
-        } catch(err) {
-
-            console.log('Error: ', err.message, x, y, pixelColor);
-        }
+        pixelTable.rows[x].cells[y].setAttribute('class', pixelColor);
 
         doParty();
     }, 100);
