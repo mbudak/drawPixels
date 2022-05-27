@@ -63,7 +63,7 @@ function clearAll() {
 function changeRows() {
     // decrease
     if (numberOfRows.value < rows) {
-        document.getElementById('pixelTable').deleteRow(rows);
+        document.getElementById('pixelTable').deleteRow(rows-1);
         rows--;
     } else { // or increase
         rows++;
