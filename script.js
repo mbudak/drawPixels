@@ -138,7 +138,7 @@ function doParty() {
         pixelTable.rows[x].cells[y].setAttribute('class', pixelColor);
 
         doParty();
-    }, 100);
+    }, 50);
 }
 
 function checkPartyMode(){
@@ -148,10 +148,6 @@ function checkPartyMode(){
         console.log('party finished')
         clearTimeout(timex);
     }
-
-    /*
-    
-    */
   }
 
 
